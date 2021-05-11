@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import org.util.ConexionDB;
+import org.util.Encriptar;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Login implements Serializable{
     private ResultSet rs;
     private PreparedStatement ps;
     private List<User> lista;
+    Encriptar enc = new Encriptar();
 
     public List<User> getLista() {
         return lista;
@@ -40,7 +42,7 @@ public class Login implements Serializable{
             conn = ConexionDB.getInstance().getConnection();
             ps = conn.prepareStatement(consulta);
             ps.setString(1, pojo.getUser());
-            ps.setString(2, pojo.getPassword());
+            ps.setString(2, enc.getMD5(pojo.getPassword()));
             rs = ps.executeQuery();
             lista = new ArrayList<>();
             if (rs.next()) {

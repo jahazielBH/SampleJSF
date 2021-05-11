@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import org.util.ConexionDB;
+import org.util.Encriptar;
 
 /**
  *
@@ -22,6 +23,7 @@ public class SignUP implements Serializable{
     private ResultSet rs;
     private PreparedStatement ps;
     private List<User> lista;
+    Encriptar enc = new Encriptar();
     
     public User registarUsuario(User pojo) {
         User usuario = null;
@@ -32,7 +34,7 @@ public class SignUP implements Serializable{
             ps = conn.prepareStatement(insert);
             ps.setString(1, pojo.getId());
             ps.setString(2, pojo.getUser());
-            ps.setString(3, pojo.getPassword());
+            ps.setString(3, enc.getMD5(pojo.getPassword()));
             rs = ps.executeQuery();
             lista = new ArrayList<>();
             if (rs.next()) {
