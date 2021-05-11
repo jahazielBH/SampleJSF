@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Registrar</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:growl id="miMsg" sticky="true" showDetail="true" life="3000" />
+            <p:fieldset legend="Registrar Usuario">
+                <h:panelGrid columns="2" cellpadding="4">
+
+                    <p:outputLabel id="lblIdR" for="txtIdR" value="Id" />
+                    <p:inputText id="txtIdR" value="#{signUpBean.user.id}"/>
+
+                    <p:outputLabel id="lblNombreR" for="txtNombreR" value="Nombre" />
+                    <p:inputText id="txtNombreR" value="#{signUpBean.user.user}"/>        
+
+                    <p:outputLabel id="lblPasswordR" for="txtPasswordR" value="Password" />
+
+
+                    <p:password id="txtPasswordR" value="#{signUpBean.user.password}"
+                                placeholder="Password"
+                                requiredMessage="Error: enter your password"
+                                match="usPasswordConfirm"/>
+
+                    <p:outputLabel id="lblPasswordC" for="usPasswordConfirm" value="Repeat Password:"/>
+                    <p:password id="usPasswordConfirm" value="#{signUpBean.user.password}"
+                                placeholder="Repeat Password"
+                                requiredMessage="Error: repeat your password"/>
+                </h:panelGrid>
+                <p:commandButton value="Registrar" icon="ui-icon-key" action="#{signUpBean.registrar()}" update="@form miMsg" />
+                <p:commandButton value="Regresar" action="#{signUpBean.regresar()}" update="@form"/>
+            </p:fieldset> 
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Empleados</title>
+        <f:event type="preRenderView" listener="#{loginBean.verificarSesion()}"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:fieldset legend="Formulario de Registro">
+                <p:growl showDetail="true" sticky="true" />
+                <p:panel header="Registro de Empleados">
+                    <h:panelGrid columns="2" cellpadding="4">
+                        <p:outputLabel id="lblClave" for="txtClave" value="Clave" />
+                        <p:inputText id="txtClave" value="#{empleadoBean.empleado.id}" />        
+
+                        <p:outputLabel id="lblNombre" for="txtNombre" value="Nombre" />
+                        <p:inputText id="txtNombre" value="#{empleadoBean.empleado.nombre}" /> 
+
+                        <p:outputLabel id="lblDireccion" for="txtDireccion" value="Direccion" />
+                        <p:inputText id="txtDireccion" value="#{empleadoBean.empleado.direccion}" />
+
+                        <p:outputLabel id="lblTelefono" for="txtTelefono" value="Telefono" />
+                        <p:inputText id="txtTelefono" value="#{empleadoBean.empleado.telefono}" />                 
+                    </h:panelGrid>
+                    <p></p>
+                    <p:commandButton value="Ingresar" action="#{empleadoBean.insertar()}" update="@form" />
+                    <p:commandButton value="Actualizar"  action="#{empleadoBean.actualizar()}" update="@form" />
+                    <p:commandButton value="Eliminar" action="#{empleadoBean.eliminar()}" update="@form" />
+                    <p:commandButton value="Buscar" icon="ui-icon-search" action="#{empleadoBean.buscarId()}" update="tblEmpleados" />
+                    <p:commandButton value="Listar" action="#{empleadoBean.listar()}" update="tblEmpleados" />
+                    <p:commandButton value="Menu" action="#{indexBean.menu()}" />
+                    <p></p>
+                    <p:dataTable id="tblEmpleados" var="tblEmp" value="#{empleadoBean.lista}">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{tblEmp.id}" />
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{tblEmp.nombre}" />
+                        </p:column>
+                        <p:column headerText="Direccion">
+                            <h:outputText value="#{tblEmp.direccion}" />
+                        </p:column>
+                        <p:column headerText="Telefono">
+                            <h:outputText value="#{tblEmp.telefono}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+            </p:fieldset> 
+        </h:form>
+    </h:body>
+</html>

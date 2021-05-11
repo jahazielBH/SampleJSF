@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Departamentos</title>
+        <f:event type="preRenderView" listener="#{loginBean.verificarSesion()}"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:fieldset legend="Formulario de Registro">
+                <p:growl id="miMsg" showDetail="true" sticky="true" />
+                <p:panel header="Registro de Departamentos">
+                    <h:panelGrid columns="2" cellpadding="4">
+
+                        <p:outputLabel id="lblClave" for="txtClave" value="Clave" />
+                        <p:inputText id="txtClave" value="#{departamentosBean.departamento.id}" />        
+
+                        <p:outputLabel id="lblNombre" for="txtNombre" value="Nombre" />
+                        <p:inputText id="txtNombre" value="#{departamentosBean.departamento.nombre}" /> 
+
+                    </h:panelGrid>
+                    <p></p>
+                    <p:commandButton value="Ingresar" action="#{departamentosBean.insertar()}" update="@form" />
+                    <p:commandButton value="Actualizar"  action="#{departamentosBean.actualizar()}" update="@form" />
+                    <p:commandButton value="Eliminar" action="#{departamentosBean.eliminar()}" update="@form" />
+                    <p:commandButton value="Buscar" icon="ui-icon-search" action="#{departamentosBean.buscarId()}" update="tblDepartamentos" />
+                    <p:commandButton value="Listar" action="#{departamentosBean.listar()}" update="tblDepartamentos" />
+                    <p:commandButton value="Menu" action="#{indexBean.menu()}" />
+                    <p></p>
+                    <p:dataTable id="tblDepartamentos" var="tblDep" value="#{departamentosBean.lista}">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{tblDep.id}" />
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{tblDep.nombre}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+            </p:fieldset>
+        </h:form>
+    </h:body>
+</html>
