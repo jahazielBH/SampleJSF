@@ -21,7 +21,7 @@ and open the template in the editor.
                     <p:inputText id="txtUser" value="#{loginBean.user.user}"/>
 
                     <p:outputLabel for="txtPassword" value="Password" />
-                    <p:inputText id="txtPassword" value="#{loginBean.user.password}"/>
+                    <p:password id="txtPassword" value="#{loginBean.user.password}"/>
 
                     <p:commandButton icon="ui-icon-key" value="Login" update="@form miMsg" action="#{loginBean.iniciarSesion()}" />
                     <p:commandButton value="Crear cuenta" update="@form" action="#{loginBean.registrarUsuario()}"/>
